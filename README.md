@@ -7,6 +7,6 @@
 
 # For extra credit
 
-## Extend the application to support any input of numbers, for example, 15 - 175
-## Extend the application to support additional rules; for example, output "baz" for numbers divisible by 4
-## Extend the application to support other rules to be defined at a later date
+### Extend the application to support any input of numbers, for example, 15 - 175
+### Extend the application to support additional rules; for example, output "baz" for numbers divisible by 4
+### Extend the application to support other rules to be defined at a later date
