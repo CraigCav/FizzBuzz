@@ -9,12 +9,10 @@ namespace ConsoleApplication
     {
         static void Main(string[] args)
         {
-            var write = new FizzBuzzWriter(Console.Out);
+            var write = new FizzBuzzWriter(Console.Out, new DefaultNumberRule());
 
-            write.Configure(new DefaultNumberRule());
             write.Configure(new DivisibleByRule(3, "Fizz"));
             write.Configure(new DivisibleByRule(5, "Buzz"));
-            write.Configure(new FizzBuzzRule());
 
             var numberSource = new ConsoleBasedNumberSource();
 

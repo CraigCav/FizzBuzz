@@ -15,11 +15,10 @@ namespace Fizzbuzz.Tests
         public void Setup()
         {
             _output = new StringWriter();
-            _fizzBuzzWriter = new FizzBuzzWriter(_output);
-            _fizzBuzzWriter.Configure(new DefaultNumberRule());
+            _fizzBuzzWriter = new FizzBuzzWriter(_output, new DefaultNumberRule());
             _fizzBuzzWriter.Configure(new DivisibleByRule(3, "Fizz"));
+            _fizzBuzzWriter.Configure(new DivisibleByRule(4, "Bazz"));
             _fizzBuzzWriter.Configure(new DivisibleByRule(5, "Buzz"));
-            _fizzBuzzWriter.Configure(new FizzBuzzRule());
         }
 
          [Test]
@@ -53,9 +52,22 @@ namespace Fizzbuzz.Tests
         [Test]
         public void should_be_able_to_configure_new_rules()
         {
-            _fizzBuzzWriter.Configure(new DivisibleByRule(4, "bazz"));
             _fizzBuzzWriter.WriteLine(4);
-            Assert.That(_output.ToString(), Is.EqualTo("bazz"));
+            Assert.That(_output.ToString(), Is.EqualTo("Bazz"));
+        }
+
+        [Test, Description("Bug Fix: 0001 - When a number matches many divisors (or many rules), it should print out all the alternate strings that apply")]
+        public void should_match_all_rules_example_1()
+        {
+            _fizzBuzzWriter.WriteLine(12);
+            Assert.That(_output.ToString(), Is.EqualTo("FizzBazz"));
+        }
+
+        [Test, Description("Bug Fix: 0001 - When a number matches many divisors (or many rules), it should print out all the alternate strings that apply")]
+        public void should_match_all_rules_example_2()
+        {
+            _fizzBuzzWriter.WriteLine(60);
+            Assert.That(_output.ToString(), Is.EqualTo("FizzBazzBuzz"));
         }
     }
 }
