@@ -10,9 +10,9 @@ namespace FizzBuzz
     {
         private readonly TextWriter _writer;
         private readonly List<IRule> _configuration = new List<IRule>();
-        private readonly DefaultNumberRule _defaultRule;
+        private readonly IRule _defaultRule;
 
-        public FizzBuzzWriter(TextWriter output, DefaultNumberRule defaultRule)
+        public FizzBuzzWriter(TextWriter output, IRule defaultRule)
         {
             _writer = output;
             _defaultRule = defaultRule;
